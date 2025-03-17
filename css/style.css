@@ -25,9 +25,9 @@ header {
     left: 0;
     width: 100%;
     height: 100%;
-    background-size: cover;
+    background-size: contain;
     background-position: center;
-    background-repeat: no-repeat; /* Added for consistency */
+    background-repeat: no-repeat;
     z-index: -1;
     transition: background-image 0.5s ease;
 }
@@ -48,8 +48,8 @@ nav ul {
     text-align: center;
     white-space: nowrap;
     overflow-x: auto;
-    position: relative; /* For z-index to work */
-    z-index: 2;       /* Above the overlay */
+    position: relative;
+    z-index: 2;
 }
 
 nav ul li {
@@ -59,16 +59,16 @@ nav ul li {
 
 nav a {
     font-family: 'Playfair Display Italic', serif;
-    font-size: 1.1rem;  /* Using your preferred size */
+    font-size: 1.1rem;
     color: #eee;
-    font-weight: 450; /* Using your preferred weight */
+    font-weight: 450;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     text-decoration: none;
     padding: 0.5rem 1rem;
     display: inline-block;
     transition: background-color 0.3s ease, font-weight 0.3s ease, color 0.3s ease;
-    position: relative; /* Keep for z-index */
+    position: relative;
 
 }
 
@@ -93,19 +93,19 @@ nav a.active {
     padding: 2rem;
     max-width: 1200px;
     margin: 0 auto;
-    min-height: calc(100vh - 250px - 2rem); /* Minimum height, accounts for header and padding */
+    min-height: calc(100vh - 250px - 2rem); /* Minimum height */
 }
 
 .main-content {
     flex: 1;
     margin-right: 2rem;
-    overflow-y: auto; /* Allow vertical scrolling */
+    overflow-y: auto;
 }
 
 .sidebar {
     flex: 0 0 250px;
-    position: relative; /* For absolute positioning of the button */
-    overflow-y: auto;  /* Allow vertical scrolling if sidebar content is long */
+    position: relative; /* Keep this */
+    overflow-y: auto;
 }
 
 .sidebar img {
@@ -117,7 +117,8 @@ nav a.active {
 
 /* Sidebar Home Button */
 .sidebar .home-button {
-    display: inline-block; /* Shrink-wrap content */
+    /* Desktop Styles (Absolute Positioning) */
+    display: inline-block;
     padding: 0.8rem 1rem;
     background-color: #3498db;
     color: #fff;
@@ -127,23 +128,121 @@ nav a.active {
     transition: background-color 0.3s ease;
     font-family: 'Lato', sans-serif;
     position: absolute;
-    bottom: 1rem;  /* Position at bottom */
-    right: 1rem; /* Position at right */
-    white-space: nowrap; /* Prevent text wrapping */
+    bottom: 1rem;
+    right: 1rem;
+    white-space: nowrap;
+}
+.sidebar-button-container {
+    text-align: right; /* Align button to the right */
+    padding: 1rem; /* Add some padding around the button */
 }
 
 .sidebar .home-button:hover {
     background-color: #2980b9;
 }
 
+/* ... (rest of your CSS, before the media query) ... */
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    nav ul {
+        white-space: nowrap;
+        overflow-x: auto;
+    }
+
+    nav ul li {
+        display: inline-block;
+        margin: 0 8px;
+    }
+
+    nav a {
+        font-size: 0.9rem;
+        letter-spacing: 0.3px;
+    }
+
+    #content-area {
+        flex-direction: column;
+        min-height: auto; /* Allow content area to grow */
+    }
+
+    .main-content {
+        margin-right: 0;
+        margin-bottom: 1rem;
+        overflow-y: visible; /* Remove overflow-y on smaller screens */
+
+    }
+    /*Mobile view*/
+    .sidebar {
+        flex: 0 0 auto;
+        width: 100%;
+        position: relative; /* Keep relative positioning */
+        overflow-y: visible;
+    }
+    /* Sidebar Home Button (Mobile Styles) */
+    .sidebar .home-button {
+        position: static;  /* Normal flow on mobile */
+        margin-top: 0;   /* Remove top margin */
+        width: auto;      /* Let the button take its natural width */
+        margin-left: auto; /* Push button to the right */
+    }
+      #hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-image {
+        max-width: 80%;
+        margin: 2rem auto 0;
+    }
+
+    #hero h1 {
+        font-size: 2.5rem;
+    }
+}
+
+/* Mobile menu */
+@media (max-width: 576px) {
+    nav ul {
+        overflow-x: auto;
+    }
+}
+
+/* --- Font Face Definition --- */
+@font-face {
+    font-family: 'Playfair Display Italic';
+    src: url('../fonts/PlayfairDisplay-Italic-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: italic;
+}
+
+/* Taekwondo-specific styles */
+.taekwondo-page .header-background {
+    background-size: contain;
+}
+
+/* Research-specific styles */
+.research-page .header-background {
+    background-size: contain;
+}
+
+/* Highlight Link Styling */
+.highlight-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.highlight-link:hover {
+    color: inherit; /* Prevent color change on hover */
+}
 /* Hero Section */
 #hero {
-    background-color: #e0e0e0;
-    padding: 2rem;
-    text-align: center;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+     background-color: #e0e0e0; /* Light gray background */
+    padding: 2rem;       /* Padding around content */
+    text-align: center;     /* Center the content */
+    display: flex;          /* Use flexbox for layout*/
+    justify-content: space-between;  /* Space between text and image */
+    align-items: center;      /* Vertically center content */
 }
 
 #hero h1 {
@@ -162,9 +261,9 @@ nav a.active {
 }
 
 .hero-image {
-    max-width: 40%; /* Adjusted for consistency */
+    max-width: 40%;
     height: auto;
-    margin-left: 2rem; /* Adjusted for consistency */
+    margin-left: 2rem;
 }
 
 .hero-image img {
@@ -176,7 +275,7 @@ nav a.active {
 
 /* About Section */
 #about {
-    padding: 3rem 0rem;  /*Consistent padding */
+    padding: 3rem 0rem;
     text-align: center;
 }
 
@@ -195,7 +294,7 @@ nav a.active {
 
 /* Highlights Section */
 #highlights {
-    padding: 3rem 0rem; /*Consistent padding */
+    padding: 3rem 0rem;
     text-align: center;
 }
 
@@ -230,26 +329,26 @@ nav a.active {
     border-radius: 8px;
     margin-bottom: 1rem;
 }
-
 /* Footer - Full Width Container */
 footer {
     background-color: #333;
     color: #fff;
     text-align: center;
-    padding: 1rem 0;
-    width: 100%;
-    clear: both;
+    padding: 1rem 0; /* Padding inside the footer */
+    width: 100%;      /* Full width */
+    clear: both;      /* Clear any floats from the content area */
+
 }
 
 .footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
+     max-width: 1200px; /* Limit width, match content area */
+    margin: 0 auto;      /* Center */
     padding: 1rem 0;
 }
 
 .social-links {
     margin-top: 0.5rem;
-    text-align: center;
+    text-align: center; /* Center social links */
 }
 
 .social-links a {
@@ -261,98 +360,4 @@ footer {
     width: 24px;
     height: 24px;
     vertical-align: middle;
-}
-
-/* Highlight Link Styling */
-.highlight-link {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-}
-
-.highlight-link:hover {
-    color: inherit; /* Prevent color change on hover */
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    nav ul {
-        white-space: nowrap;
-        overflow-x: auto;
-    }
-
-    nav ul li {
-        display: inline-block;
-        margin: 0 8px;
-    }
-
-    nav a {
-        font-size: 0.9rem;  /* Smaller font size on smaller screens */
-        letter-spacing: 0.3px; /* Adjust letter-spacing */
-    }
-
-    #content-area {
-        flex-direction: column;
-        min-height: auto; /* Remove minimum height on smaller screens */
-    }
-
-    .main-content {
-        margin-right: 0;
-        margin-bottom: 1rem;
-    }
-
-    .sidebar {
-        flex: 0 0 auto;
-        width: 100%;
-        position: relative; /* Keep relative positioning */
-    }
-
-    /*  On smaller screens, make button normal flow */
-    .sidebar .home-button {
-        position: static;
-        margin-top: 1rem;
-        width: 100%;
-    }
-
-     /*Hero Section*/
-      #hero {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .hero-image {
-        max-width: 80%;
-        margin: 2rem auto 0;
-    }
-
-    #hero h1 {
-        font-size: 2.5rem;
-    }
-}
-
-/* Mobile menu */
-@media (max-width: 576px) {
-    nav ul {
-        overflow-x: auto;
-    }
-}
-
-/* --- Font Face Definition --- */
-@font-face {
-    font-family: 'Playfair Display Italic';
-    src: url('../fonts/PlayfairDisplay-Italic-VariableFont_wght.ttf') format('truetype');
-    font-weight: 100 900;
-    font-style: italic;
-}
-
-/* Taekwondo-specific styles */
-.taekwondo-page .header-background {
-    background-size: contain;
-    background-position: center;  /* Keep centered */
-}
-
-/* Research-specific styles */
-.research-page .header-background {
-    background-size: contain;
-     background-position: center; /* Keep centered */
 }
